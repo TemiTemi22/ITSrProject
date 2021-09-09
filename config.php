@@ -1,5 +1,5 @@
 <?php
-	#Configuration file for Stockify database 
+	#Configuration file for Stockify database, connects website to database  
 
 	# Turn on output buffer for better loading
 	ob_start();
