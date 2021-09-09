@@ -5,7 +5,7 @@
   #array to hold login errors so they can be displayed where we want them to
   $errors = array();
 
-  #if the manager login is pressed a query is ran to see if the credentials are in the database
+  #if the manager login button is pressed a query is ran to see if the credentials are in the database
   if(isset($_POST['managerLogin'])) {
     #username and password entered by the user
     $username = $_POST['username'];
