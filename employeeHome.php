@@ -1,6 +1,5 @@
 <?php
   require 'config/config.php';
-
 ?>
 
 <html lang="en-us">
@@ -13,7 +12,12 @@
 
 <body>
   <header>
-    <h1>Employee Home</h1>
+    <a href="employeeHome.php"><h1 id="headerlogo">Stockify</h1></a>
+    
+    <nav>
+      <a href="employeeHome.php"><b>Home</b></a>
+      <a href="login.php"><b>Logout</b></a>
+    </nav>
   </header>
 
   <main>
