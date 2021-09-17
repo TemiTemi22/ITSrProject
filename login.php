@@ -23,7 +23,7 @@
     
     #else add an error statement to the error array to be displayed later
     else {
-      array_push($errors1, "Username or Password is incorrect<br>");
+      array_push($errors1, "Username or Password is incorrect");
     }
   }
 
@@ -44,7 +44,7 @@
     
     #else add an error statement to the error array to be displayed later
     else {
-      array_push($errors2, "Username or Password is incorrect<br>");
+      array_push($errors2, "Username or Password is incorrect");
     }
   }
 ?>
@@ -83,8 +83,8 @@
         
         <?php 
           #if the error exists in the error array display it
-          if(in_array("Username or Password is incorrect<br>", $errors1)) {
-            echo "<p style='color: white'>Username or Password is incorrect</p><br>";
+          if(in_array("Username or Password is incorrect", $errors1)) {
+            echo "<p style='color: white'>Username or Password is incorrect</p>";
           }
         ?>
         </form></center>
@@ -109,8 +109,8 @@
         
         <?php 
           #if the error exists in the error array display it
-          if(in_array("Username or Password is incorrect<br>", $errors2)) {
-            echo "<p style='color: white'>Username or Password is incorrect</p><br>";
+          if(in_array("Username or Password is incorrect", $errors2)) {
+            echo "<p style='color: white'>Username or Password is incorrect</p>";
           }
         ?>
       </form></center>
