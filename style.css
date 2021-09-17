@@ -11,6 +11,8 @@ header{
   border-bottom: 0.6em solid #1c3343;
   margin: 0px;
   padding: 0px;
+  position: fixed;
+  top: 0;
 }
 
 a:visited{
