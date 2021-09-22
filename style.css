@@ -4,36 +4,39 @@ body{
   margin: 0px;
 }
 
-header{
+.headerdiv{
   color: white;
   background-color: #1D3E4F;
   height: 75px;
   border-bottom: 0.6em solid #1c3343;
   margin: 0px;
   padding: 0px;
-  position: fixed;
   width: 100%;
+  position: fixed;
+  top: 0px;
 }
 
 a:visited{
   color:white;
 }
 
-nav{
+.headerlinks{
   float: right;
   font-size: 30px;
   padding-right: 20px;
   padding-top: 25px;
 }
 
-nav a{
+.headerlinks a{
   text-decoration: none;
   background-color: #374f5c;
   border-radius: 10px;
   padding: 5px;
+  margin-left: 7px;
+  margin-right: 7px;
 }
 
-nav a:hover{
+.headerlinks a:hover{
   background-color: #1c3343;
   border-radius: 10px;
   padding: 5px;
@@ -44,4 +47,85 @@ nav a:hover{
   margin: 0px;
   padding-left: 20px;
   display: inline;
+}
+
+.pagelinksdiv{
+  background-color: #1D3E4F;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 100px;
+  margin-bottom: 25px;
+  margin-top: 150px;
+  border: 0.2em solid #1c3343;
+  font-size: 20px;
+}
+
+.pagelinksnav a{
+  text-decoration: none;
+  background-color: #374f5c;
+  border-radius: 10px;
+  padding: 8px;
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+.pagelinksnav a:hover{
+  background-color: #1c3343;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.inventorydiv{
+  background-color: #1D3E4F;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 100px;
+  margin-top: 25px;
+  border: 0.2em solid #1c3343;
+}
+
+.inventorydivemployee{
+  background-color: #1D3E4F;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 100px;
+  margin-top: 25px;
+  border: 0.2em solid #1c3343;
+  float: left;
+  width: auto;
+}
+
+table, th, td{
+  border: 0.2em solid #1c3343;
+  border-collapse: collapse;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  margin: 5px;
+}
+
+th{
+  font-size: 20px;
+  text-decoration: underline;
+  background-color: #374f5c;
+}
+
+.announcementsdiv{
+  background-color: #1D3E4F;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 100px;
+  margin-top: 25px;
+  border: 0.2em solid #1c3343;
+  float: right;
+  width: auto;
+}
+
+#an{
+  font-size: 40px;
+  text-decoration: underline;
 }
