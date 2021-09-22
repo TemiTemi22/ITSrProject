@@ -3,7 +3,7 @@
 
   $inventory = "";
 
-  $inventoryQuery = mysqli_query($connect, "SELECT * FROM products");
+  $inventoryQuery = mysqli_query($connect, "SELECT * FROM products ORDER BY product_name ASC");
 
   if(mysqli_num_rows($inventoryQuery) > 0){
     while($results = mysqli_fetch_array($inventoryQuery)){
