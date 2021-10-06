@@ -96,6 +96,8 @@ a:visited{
   border: 0.2em solid #1c3343;
   float: left;
   width: auto;
+  margin-right: 0px;
+  max-width: 1500px;
 }
 
 table, th, td{
@@ -123,9 +125,58 @@ th{
   border: 0.2em solid #1c3343;
   float: right;
   width: auto;
+  max-width: 300px;
+  margin-left: 0px;
 }
 
 #an{
   font-size: 40px;
   text-decoration: underline;
+}
+
+.container{
+  background-color: #1D3E4F;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 100px;
+  margin-top: 150px;
+  border: 0.2em solid #1c3343;
+}
+
+input[type="submit"]{
+  background-color: #475155;
+  border: 1px solid #475155;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10px;
+  margin: 5px 0px 10px 0px;
+  color: white;
+  font-size: 100%;
+}
+
+.title{
+  font-size: 50px;
+  text-decoration: underline;
+  padding: 10px;
+  margin: 0px;
+}
+
+input[type="text"]{
+  border: 1px solid black;
+  margin-top: 5px;
+  width: 300px;
+  height: 35px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  border-radius: 10px;
+}
+
+.textarea{
+  border: 1px solid black !important;
+  margin-top: 5px !important;
+  width: 70% !important;
+  height: 150px !important;
+  margin-bottom: 10px !important;
+  padding-left: 5px !important;
+  border-radius: 10px !important;
 }
