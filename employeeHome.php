@@ -1,6 +1,10 @@
 <?php
   require 'config/config.php';
 
+  if(!isset($_SESSION['username'])){
+    header('Location: login.php');
+  }
+
   $inventory = "";
   $announcements = "";
 
@@ -10,10 +14,33 @@
     while($results = mysqli_fetch_array($inventoryQuery)){
       $productName = $results['product_name'];
       $quantity = $results['quantity'];
+      $bufferStock = $results['buffer_stock'];
+      $leadTime = $results['lead_time'];
+      $dateAdded = $results['date_added'];
+      $attributes = $results['attributes'];
+      
+      $dateAddedCalc = date_create($results['date_added']);
+      $todaysDate = new DateTime("now");
+      $shelfAgeDiff = date_diff($dateAddedCalc, $todaysDate);
+      
+      $shelfAgeNum = $shelfAgeDiff->format('%a');
+      
+      if($shelfAgeNum == 1){
+        $shelfAge = $shelfAgeDiff->format('%a Day');
+      }
+      
+      else{
+        $shelfAge = $shelfAgeDiff->format('%a Days');
+      }
       
       $inventory .= "<tr>
                       <td>$productName</td>
                       <td>$quantity</td>
+                      <td>$bufferStock</td>
+                      <td>$leadTime</td>
+                      <td>$shelfAge</td>
+                      <td>$dateAdded</td>
+                      <td>$attributes</td>
                      </tr>";
     }
   }
@@ -47,7 +74,7 @@
     
       <nav class="headerlinks">
         <a href="employeeHome.php"><b>Home</b></a>
-        <a href="login.php"><b>Logout</b></a>
+        <a href="logout.php"><b>Logout</b></a>
       </nav>
     </div>
   </header>
@@ -69,7 +96,13 @@
           <tr>
             <th><b>Product Name</b></th>
             <th><b>Quantity</b></th>
+            <th><b>Buffer Stock</b></th>
+            <th><b>Lead Time</b></th>
+            <th><b>Total Days Selling Product</b></th>
+            <th><b>Date Started Selling Product</b></th>
+            <th><b>Attributes</b></th>
           </tr>
+          
           <?php echo $inventory; ?>
         </table>
       </center>
