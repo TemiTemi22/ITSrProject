@@ -18,6 +18,7 @@
     
     #if a result is returned redirect to the manager home page
     if($checkQuery == 1) {
+      $_SESSION['username'] = $username;
       header("Location: managerHome.php");
     }
     
@@ -39,6 +40,7 @@
     
     #if a result is returned redirect to the manager home page
     if($checkQuery == 1) {
+      $_SESSION['username'] = $username;
       header("Location: employeeHome.php");
     }
     
