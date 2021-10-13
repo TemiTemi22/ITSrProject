@@ -70,3 +70,13 @@ input[type="submit"]{
   color: white;
   font-size: 100%;
 }
+
+input[type="submit"]:hover{
+  background-color: #1c3343;
+  border: 1px solid #1c3343;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10px;
+  margin: 5px 0px 10px 0px;
+  color: white;
+  font-size: 100%;
+}
