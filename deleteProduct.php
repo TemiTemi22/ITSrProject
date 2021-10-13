@@ -3,6 +3,10 @@ require 'config/config.php';
 
   $notifications = array();
 
+  if(!isset($_SESSION['username'])){
+    header('Location: login.php');
+  }
+
   if(isset($_POST['deleteProduct'])){
     $productName = mysqli_real_escape_string($connect, htmlspecialchars($_POST['productName']));
     
