@@ -3,6 +3,10 @@
     
   $notifications = array();
 
+  if(!isset($_SESSION['username'])){
+    header('Location: login.php');
+  }
+
   if(isset($_POST['sendAnnouncement'])){
     $announcement = mysqli_real_escape_string($connect, htmlspecialchars($_POST['announcement']));
     
