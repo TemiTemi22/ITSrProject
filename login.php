@@ -18,6 +18,7 @@
     
     #if a result is returned redirect to the manager home page
     if($checkQuery == 1) {
+      session_start();
       $_SESSION['username'] = $username;
       header("Location: managerHome.php");
     }
@@ -38,8 +39,9 @@
     $query = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username' AND password = '$password' AND role = 'employee'");
     $checkQuery = mysqli_num_rows($query);
     
-    #if a result is returned redirect to the manager home page
+    #if a result is returned redirect to the employee home page
     if($checkQuery == 1) {
+      session_start();
       $_SESSION['username'] = $username;
       header("Location: employeeHome.php");
     }
