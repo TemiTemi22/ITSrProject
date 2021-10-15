@@ -192,3 +192,9 @@ input[type="text"], input[type="tel"], input[type="number"]{
   padding-left: 5px !important;
   border-radius: 10px !important;
 }
+
+hr{
+  height: 5px;
+  background-color: #1c3343;
+  border: none;
+}
