@@ -148,7 +148,7 @@
         <center>
           <h1 class="title">Update Product</h1>
           
-          <form action="updateProduct.php" method="post">
+          <form action="updateProduct.php" method="post" autocomplete="off">
             <input type="text" name="productName" placeholder="Product Name" value="<?php if(isset($_SESSION['productName'])){echo $_SESSION['productName']; } ?>" required>
             <input type="submit" name="search" value="Product Search">
             
@@ -163,7 +163,7 @@
           
           <hr>
           
-          <form action="updateProduct.php" method="post">
+          <form action="updateProduct.php" method="post" autocomplete="off">
             <input type="text" name="newProductName" placeholder="Product Name" value="<?php if(isset($productName)){echo $productName;} ?>" required <?php if($num_results == 0){echo "disabled";} ?>>
             <input type="submit" name="updateName" value="Update Product Name" <?php if($num_results == 0){echo "disabled";} ?>>
             
@@ -176,7 +176,7 @@
             ?>
           </form>
           
-          <form action="updateProduct.php" method="post">
+          <form action="updateProduct.php" method="post" autocomplete="off">
             <input type="number" name="quantity" placeholder="Quantity" value="<?php if(isset($quantity)){echo $quantity;} ?>" required <?php if($num_results == 0){echo "disabled";} ?>>
             <input type="submit" name="updateQuantity" value="Update Quantity" <?php if($num_results == 0){echo "disabled";} ?>>
             
@@ -189,7 +189,7 @@
             ?>
           </form>
             
-          <form action="updateProduct.php" method="post">
+          <form action="updateProduct.php" method="post" autocomplete="off">
             <input type="number" name="bufferStock" placeholder="Buffer Stock" value="<?php if(isset($bufferStock)){echo $bufferStock;} ?>" required <?php if($num_results == 0){echo "disabled";} ?>>
             <input type="submit" name="updateBufferStock" value="Update Buffer Stock" <?php if($num_results == 0){echo "disabled";} ?>>
             
@@ -202,7 +202,7 @@
             ?>
           </form>
           
-          <form action="updateProduct.php" method="post">  
+          <form action="updateProduct.php" method="post" autocomplete="off">  
             <input type="number" name="leadTime" placeholder="Lead Time: Value 1-5" value="<?php if(isset($leadTime)){echo $leadTime;} ?>" required <?php if($num_results == 0){echo "disabled";} ?>>
             <input type="submit" name="updateLeadTime" value="Update Lead Time" <?php if($num_results == 0){echo "disabled";} ?>>
             
@@ -219,7 +219,7 @@
             ?>
           </form>
           
-          <form action="updateProduct.php" method="post">
+          <form action="updateProduct.php" method="post" autocomplete="off">
             <input type="text" name="attributes" placeholder="Attributes" value="<?php if(isset($attributes)){echo $attributes;} ?>" required <?php if($num_results == 0){echo "disabled";} ?>>
             <input type="submit" name="updateAttributes" value="Update Attributes" <?php if($num_results == 0){echo "disabled";} ?>>
             
