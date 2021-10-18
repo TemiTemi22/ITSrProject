@@ -72,7 +72,7 @@
     <div class="login" id="mlogin">
       <center><h2 class="lheader">Manager Login</h2>
       
-      <form action="login.php" method="post">
+      <form action="login.php" method="post" autocomplete="off">
         <input type="text" name="username" placeholder="Username" required>
         
         <br>
@@ -98,7 +98,7 @@
     <div class="login" id="elogin">
       <center><h2 class="lheader">Employee Login</h2>
       
-      <form action="login.php" method="post">
+      <form action="login.php" method="post" autocomplete="off">
         <input type="text" name="username" placeholder="Username" required>
         
         <br>
