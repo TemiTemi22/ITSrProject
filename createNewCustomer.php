@@ -1,11 +1,11 @@
 <?php
-require 'config/config.php';
-
-  $notifications = array();
+  require 'config/config.php';
 
   if(!isset($_SESSION['username'])){
     header('Location: login.php');
   }
+
+  $notifications = array();
 
   if(isset($_POST['createNewCustomer'])){
     $customerName = mysqli_real_escape_string($connect, htmlspecialchars($_POST['customerName']));
@@ -44,10 +44,10 @@ require 'config/config.php';
         <center>
           <h1 class="title">Create New Customer</h1>
           
-          <form action="createNewCustomer.php" method="post">
-            <input type="text" name="customerName" placeholder="Name" required>
-            <input type="tel" name="customerPhoneNumber" placeholder="Phone Number: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-            <input type="text" name="customerAddress" placeholder="Address" required>
+          <form action="createNewCustomer.php" method="post" autocomplete="off">
+            <input type="text" name="customerName" placeholder="Name" autocomplete="off" required>
+            <input type="tel" name="customerPhoneNumber" placeholder="Phone Number: 123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" autocomplete="off" required>
+            <input type="text" name="customerAddress" placeholder="Address" autocomplete="off" required>
             
             <br>
             
