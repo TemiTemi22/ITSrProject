@@ -1,11 +1,11 @@
 <?php
   require 'config/config.php';
-    
-  $notifications = array();
 
-  if(!isset($_SESSION['username'])){
+   if(!isset($_SESSION['username'])){
     header('Location: login.php');
-  }
+   }
+
+  $notifications = array();
 
   if(isset($_POST['sendAnnouncement'])){
     $announcement = mysqli_real_escape_string($connect, htmlspecialchars($_POST['announcement']));
@@ -41,7 +41,7 @@
         <center>
           <h1 class="title">Send Announcement</h1>
           
-          <form action="sendAnnouncement.php" method="post">
+          <form action="sendAnnouncement.php" method="post" autocomplete="off">
             <input class="textarea" type="text" name="announcement" placeholder="Enter Announcement..." required>
             
             <br>
