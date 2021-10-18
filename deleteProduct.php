@@ -1,11 +1,11 @@
 <?php
-require 'config/config.php';
-
-  $notifications = array();
+  require 'config/config.php';
 
   if(!isset($_SESSION['username'])){
     header('Location: login.php');
   }
+
+  $notifications = array();
 
   if(isset($_POST['deleteProduct'])){
     $productName = mysqli_real_escape_string($connect, htmlspecialchars($_POST['productName']));
@@ -50,7 +50,7 @@ require 'config/config.php';
         <center>
           <h1 class="title">Delete Product</h1>
           
-          <form action="deleteProduct.php" method="post">
+          <form action="deleteProduct.php" method="post" autocomplete="off">
             <input type="text" name="productName" placeholder="Product Name" required>
             
             <br>
