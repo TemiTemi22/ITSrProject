@@ -20,6 +20,7 @@
     
     if($num_results == 0){
       array_push($notifications, "Product does not exist");
+	unset($_SESSION['productName']);
     }
     
     elseif($num_results == 1){
