@@ -24,8 +24,12 @@
     }
     
     elseif($num_results == 0){
-      if($leadTime > 5){
+      if($leadTime > 5 || $leadTime < 1){
         array_push($notifications, "Lead time must be a value between 1 and 5");
+      }
+      
+      elseif($quantity <= 0){
+        array_push($notifications, "Quantity must be a positive number");
       }
       
       else{
@@ -89,6 +93,10 @@
             
               if(in_array("Product Created", $notifications)) {
                 echo "<p style='color: white'>Product Created</p>";
+              }
+            
+              if(in_array("Quantity must be a positive number", $notifications)) {
+                echo "<p style='color: white'>Quantity must be a positive number</p>";
               }
             ?>
           </form>
