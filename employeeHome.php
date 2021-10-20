@@ -83,9 +83,9 @@
     <div class="pagelinksdiv">
       <nav class="pagelinksnav">
         <center>
-          <a href=""><b>Create New Customer</b></a>
+          <a href="createNewCustomer.php"><b>Create New Customer</b></a>
           <a href=""><b>Sell Product</b></a>
-          <a href=""><b>Stock Product</b></a>
+          <a href="stockProduct.php"><b>Stock Product</b></a>
         </center>
       </nav>
     </div>
