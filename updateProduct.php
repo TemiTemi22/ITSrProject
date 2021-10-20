@@ -20,7 +20,7 @@
     
     if($num_results == 0){
       array_push($notifications, "Product does not exist");
-	unset($_SESSION['productName']);
+      unset($_SESSION['productName']);
     }
     
     elseif($num_results == 1){
@@ -59,11 +59,17 @@
      
      $quantity = mysqli_real_escape_string($connect, htmlspecialchars($_POST['quantity']));
      
-     $query = mysqli_query($connect, "UPDATE products SET quantity = '$quantity' WHERE product_id = '$productId'");
+      if($quantity <= 0){
+        array_push($notifications, "Quantity must be a positive number");
+      }
      
-     array_push($notifications, "Product Quantity Updated");
+     else{
+      $query = mysqli_query($connect, "UPDATE products SET quantity = '$quantity' WHERE product_id = '$productId'");
      
-     unset($_SESSION['productName']);
+      array_push($notifications, "Product Quantity Updated");
+       
+      unset($_SESSION['productName']);
+     }
    }
 
    if(isset($_POST['updateBufferStock'])){   
@@ -93,7 +99,7 @@
     
      $leadTime = mysqli_real_escape_string($connect, htmlspecialchars($_POST['leadTime']));
      
-     if($leadTime > 5){
+     if($leadTime > 5 || $leadTime < 1){
         array_push($notifications, "Lead time must be a value between 1 and 5");
       }
     
@@ -186,6 +192,10 @@
             <?php            
               if(in_array("Product Quantity Updated", $notifications)) {
                 echo "<p style='color: white'>Product Quantity Updated</p>";
+              }
+            
+              if(in_array("Quantity must be a positive number", $notifications)) {
+                echo "<p style='color: white'>Quantity must be a positive number</p>";
               }
             ?>
           </form>
