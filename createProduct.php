@@ -11,6 +11,8 @@
     $productName = mysqli_real_escape_string($connect, htmlspecialchars($_POST['productName']));
     $quantity = mysqli_real_escape_string($connect, htmlspecialchars($_POST['quantity']));
     $bufferStock = mysqli_real_escape_string($connect, htmlspecialchars($_POST['bufferStock']));
+    $price = mysqli_real_escape_string($connect, htmlspecialchars($_POST['price']));
+    $priceString = "$" . $price . ".00";
     $leadTime = mysqli_real_escape_string($connect, htmlspecialchars($_POST['leadTime']));
     $attributes = mysqli_real_escape_string($connect, htmlspecialchars($_POST['attributes']));
     $dateAdded = new DateTime("now");
@@ -32,8 +34,12 @@
         array_push($notifications, "Quantity must be a positive number");
       }
       
+      elseif($price <= 0){
+        array_push($notifications, "Price must be a positive number");
+      }
+      
       else{
-        $query2 = mysqli_query($connect, "INSERT INTO products VALUES ('', '$productName', '$quantity', '$bufferStock', '$leadTime', '', '$dateString', '$attributes')");
+        $query2 = mysqli_query($connect, "INSERT INTO products VALUES ('', '$productName', '$quantity', '$priceString', '$bufferStock', '$leadTime', '', '$dateString', '$attributes')");
         
         array_push($notifications, "Product Created");
       }
@@ -73,6 +79,7 @@
             
             <br>
             
+            <input type="number" name="price" placeholder="Price" required>
             <input type="number" name="leadTime" placeholder="Lead Time: Value 1-5" required>
             <input type="text" name="attributes" placeholder="Attributes" required>
             
@@ -97,6 +104,10 @@
             
               if(in_array("Quantity must be a positive number", $notifications)) {
                 echo "<p style='color: white'>Quantity must be a positive number</p>";
+              }
+            
+              if(in_array("Price must be a positive number", $notifications)) {
+                echo "<p style='color: white'>Price must be a positive number</p>";
               }
             ?>
           </form>
