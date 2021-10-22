@@ -29,6 +29,7 @@
       $bufferStock = $results['buffer_stock'];
       $leadTime = $results['lead_time'];
       $attributes = $results['attributes'];
+      $price = $results['price'];
     }
   }
 
@@ -46,6 +47,24 @@
      
      array_push($notifications, "Product Name Updated");
      
+     unset($_SESSION['productName']);
+   }
+
+  if(isset($_POST['updatePrice'])){ 
+     if(isset($_SESSION['productName'])){
+       $pn = $_SESSION['productName'];
+       $q = mysqli_query($connect, "SELECT * FROM products WHERE product_name = '$pn'");
+       $r = mysqli_fetch_array($q);
+       $productId = (int) $r['product_id'];
+     }
+     
+     $price = mysqli_real_escape_string($connect, htmlspecialchars($_POST['price']));
+     $priceString = "$" . $price . ".00";
+     
+     $query = mysqli_query($connect, "UPDATE products SET price = '$priceString' WHERE product_id = '$productId'");
+
+     array_push($notifications, "Product Price Updated");
+
      unset($_SESSION['productName']);
    }
 
@@ -180,6 +199,19 @@
               if(in_array("Product Name Updated", $notifications)) {
                 echo "<p style='color: white'>Product Name Updated</p>";
               }
+            ?>
+          </form>
+          
+          <form action="updateProduct.php" method="post" autocomplete="off">
+            <input type="text" name="price" placeholder="Price" value="<?php if(isset($price)){echo $price;} ?>" required <?php if($num_results == 0){echo "disabled";} ?>>
+            <input type="submit" name="updatePrice" value="Update Price" <?php if($num_results == 0){echo "disabled";} ?>>
+            
+            <br>
+            
+            <?php            
+              if(in_array("Product Price Updated", $notifications)) {
+                echo "<p style='color: white'>Product Price Updated</p>";
+              }                         
             ?>
           </form>
           
