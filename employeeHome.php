@@ -18,6 +18,7 @@
       $leadTime = $results['lead_time'];
       $dateAdded = $results['date_added'];
       $attributes = $results['attributes'];
+      $price = $results['price'];
       
       $dateAddedCalc = date_create($results['date_added']);
       $todaysDate = new DateTime("now");
@@ -35,6 +36,7 @@
       
       $inventory .= "<tr>
                       <td>$productName</td>
+                      <td>$price</td>
                       <td>$quantity</td>
                       <td>$bufferStock</td>
                       <td>$leadTime</td>
@@ -84,7 +86,7 @@
       <nav class="pagelinksnav">
         <center>
           <a href="createNewCustomer.php"><b>Create New Customer</b></a>
-          <a href=""><b>Sell Product</b></a>
+          <a href="sellProduct.php"><b>Sell Product</b></a>
           <a href="stockProduct.php"><b>Stock Product</b></a>
         </center>
       </nav>
@@ -95,7 +97,8 @@
         <table class="inventory">
           <tr>
             <th><b>Product Name</b></th>
-            <th><b>Quantity</b></th>
+            <th><b>Price</b></th>
+            <th><b>Quantity</b></th>            
             <th><b>Buffer Stock</b></th>
             <th><b>Lead Time</b></th>
             <th><b>Total Days Selling Product</b></th>
