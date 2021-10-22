@@ -14,13 +14,14 @@
     $query = mysqli_query($connect, "SELECT * FROM products WHERE product_name = '$productName'");
     $num_results = mysqli_num_rows($query);
     $results = mysqli_fetch_array($query);
-    $inventoryQuantity = $results['quantity'];
     
     if($num_results == 0){
       array_push($notifications, "Product does not exist");
     }
     
     elseif($num_results == 1){
+      $inventoryQuantity = $results['quantity'];
+      
       if($stockQuantity <= 0){
         array_push($notifications, "Quantity must be a positive number");
       }
