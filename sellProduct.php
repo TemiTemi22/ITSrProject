@@ -34,6 +34,10 @@
       $customerId = $customerResults['customer_id'];
       $date = new DateTime("now");
       $dateString = $date->format('Y-m-d H:i:s');
+      $price = $results['price'];
+      $calcPrice = (int) preg_replace("/([^0-9\\.])/i", "", $price);
+      $total = $calcPrice * $sellQuantity;
+      $displayTotal = "$" . $total . ".00";
       
       if($sellQuantity <= 0){
         array_push($notifications, "Quantity must be a positive number");
@@ -48,7 +52,7 @@
       }
       
       else{
-        $saleQuery = mysqli_query($connect, "INSERT INTO sales VALUES ('', '$customerId', '$customerName', '$customerNumber', '$productName', '$sellQuantity', '$dateString', 'Sold')");
+        $saleQuery = mysqli_query($connect, "INSERT INTO sales VALUES ('', '$customerId', '$customerName', '$customerNumber', '$productName', '$sellQuantity', '$dateString', '$displayTotal', 'Sold')");
         
         $newInventoryQuantity = $inventoryQuantity - $sellQuantity;
         
