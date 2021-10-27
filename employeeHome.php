@@ -5,45 +5,101 @@
     header('Location: login.php');
   }
 
+  $notifications = array();
   $inventory = "";
+  $searchInventory = "";
   $announcements = "";
 
-  $inventoryQuery = mysqli_query($connect, "SELECT * FROM products ORDER BY product_name ASC");
+  if(isset($_POST['search'])){ 
+    $productName = mysqli_real_escape_string($connect, htmlspecialchars($_POST['productName']));
 
-  if(mysqli_num_rows($inventoryQuery) > 0){
-    while($results = mysqli_fetch_array($inventoryQuery)){
-      $productName = $results['product_name'];
-      $quantity = $results['quantity'];
-      $bufferStock = $results['buffer_stock'];
-      $leadTime = $results['lead_time'];
-      $dateAdded = $results['date_added'];
-      $attributes = $results['attributes'];
-      $price = $results['price'];
-      
-      $dateAddedCalc = date_create($results['date_added']);
-      $todaysDate = new DateTime("now");
-      $shelfAgeDiff = date_diff($dateAddedCalc, $todaysDate);
-      
-      $shelfAgeNum = $shelfAgeDiff->format('%a');
-      
-      if($shelfAgeNum == 1){
-        $shelfAge = $shelfAgeDiff->format('%a Day');
+    $q = mysqli_query($connect, "SELECT * FROM products WHERE product_name LIKE '$productName%' ORDER BY product_name ASC");
+    $num_results = mysqli_num_rows($q);
+
+    if($num_results == 0){
+      array_push($notifications, "Product does not exist");
+    }
+
+    elseif($num_results > 0){
+      while($results = mysqli_fetch_array($q)){
+        $productName = $results['product_name'];
+        $quantity = $results['quantity'];
+        $bufferStock = $results['buffer_stock'];
+        $leadTime = $results['lead_time'];
+        $dateAdded = $results['date_added'];
+        $attributes = $results['attributes'];
+        $price = $results['price'];
+
+        $dateAddedCalc = date_create($results['date_added']);
+        $todaysDate = new DateTime("now");
+        $shelfAgeDiff = date_diff($dateAddedCalc, $todaysDate);
+
+        $shelfAgeNum = $shelfAgeDiff->format('%a');
+
+        if($shelfAgeNum == 1){
+          $shelfAge = $shelfAgeDiff->format('%a Day');
+          $query = mysqli_query($connect, "UPDATE products SET shelf_age = '$shelfAge' WHERE product_name = '$productName'");
+        }
+
+        else{
+          $shelfAge = $shelfAgeDiff->format('%a Days');
+          $query = mysqli_query($connect, "UPDATE products SET shelf_age = '$shelfAge' WHERE product_name = '$productName'");
+        }
+
+        $searchInventory .= "<tr>
+                        <td>$productName</td>
+                        <td>$price</td>
+                        <td>$quantity</td>
+                        <td>$bufferStock</td>
+                        <td>$leadTime</td>
+                        <td>$shelfAge</td>
+                        <td>$dateAdded</td>
+                        <td>$attributes</td>
+                       </tr>";
       }
-      
-      else{
-        $shelfAge = $shelfAgeDiff->format('%a Days');
+    }
+  }
+
+  else{
+    $inventoryQuery = mysqli_query($connect, "SELECT * FROM products ORDER BY product_name ASC");
+
+    if(mysqli_num_rows($inventoryQuery) > 0){
+      while($results = mysqli_fetch_array($inventoryQuery)){
+        $productName = $results['product_name'];
+        $quantity = $results['quantity'];
+        $bufferStock = $results['buffer_stock'];
+        $leadTime = $results['lead_time'];
+        $dateAdded = $results['date_added'];
+        $attributes = $results['attributes'];
+        $price = $results['price'];
+
+        $dateAddedCalc = date_create($results['date_added']);
+        $todaysDate = new DateTime("now");
+        $shelfAgeDiff = date_diff($dateAddedCalc, $todaysDate);
+
+        $shelfAgeNum = $shelfAgeDiff->format('%a');
+
+        if($shelfAgeNum == 1){
+          $shelfAge = $shelfAgeDiff->format('%a Day');
+          $query = mysqli_query($connect, "UPDATE products SET shelf_age = '$shelfAge' WHERE product_name = '$productName'");
+        }
+
+        else{
+          $shelfAge = $shelfAgeDiff->format('%a Days');
+          $query = mysqli_query($connect, "UPDATE products SET shelf_age = '$shelfAge' WHERE product_name = '$productName'");
+        }
+
+        $inventory .= "<tr>
+                        <td>$productName</td>
+                        <td>$price</td>
+                        <td>$quantity</td>
+                        <td>$bufferStock</td>
+                        <td>$leadTime</td>
+                        <td>$shelfAge</td>
+                        <td>$dateAdded</td>
+                        <td>$attributes</td>
+                       </tr>";
       }
-      
-      $inventory .= "<tr>
-                      <td>$productName</td>
-                      <td>$price</td>
-                      <td>$quantity</td>
-                      <td>$bufferStock</td>
-                      <td>$leadTime</td>
-                      <td>$shelfAge</td>
-                      <td>$dateAdded</td>
-                      <td>$attributes</td>
-                     </tr>";
     }
   }
 
@@ -94,6 +150,19 @@
     
     <div class="inventorydivemployee">
       <center>
+        <form action="employeeHome.php" method="post" autocomplete="off">
+            <input type="text" name="productName" placeholder="Product Name" required>
+            <input type="submit" name="search" value="Product Search">
+            
+            <br>
+            
+            <?php 
+              if(in_array("Product does not exist", $notifications)) {
+                echo "<p style='color: white'>Product does not exist</p>";
+              }
+            ?>
+        </form>
+        
         <table class="inventory">
           <tr>
             <th><b>Product Name</b></th>
@@ -106,7 +175,15 @@
             <th><b>Attributes</b></th>
           </tr>
           
-          <?php echo $inventory; ?>
+          <?php 
+            if(isset($inventory)){
+              echo $inventory;
+            }
+          
+            if(isset($searchInventory)){
+              echo $searchInventory;
+            }
+          ?>
         </table>
       </center>
     </div>
